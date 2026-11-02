@@ -1,0 +1,25 @@
+{
+  "name": "mysong",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anwarbashir/MySong.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anwarbashir/MySong/issues"
+  },
+  "homepage": "https://github.com/anwarbashir/MySong#readme",
+  "dependencies": {
+    "dotenv": "^18.0.9",
+    "openai": "^7.47.0"
+  }
+}
