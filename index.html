@@ -1,27 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>MySong</title>
-</head>
-<body>
-    <h1>MySong 🎵</h1>
+<script>
+async function generateSong() {
 
-    <input
-        type="text"
-        id="theme"
-        placeholder="Enter a song theme">
+    const theme =
+        document.getElementById("theme").value;
 
-    <button onclick="generateSong()">
-        Generate Song
-    </button>
+    document.getElementById("output").textContent =
+        "Generating song...";
 
-    <pre id="output"></pre>
+    try {
 
-    <script>
-        async function generateSong() {
-            document.getElementById("output").textContent =
-                "Generating song...";
-        }
-    </script>
-</body>
-</html>
+        const response = await fetch(
+            "/.netlify/functions/generate-song",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    theme: theme
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        document.getElementById("output").textContent =
+            data.song || data.error;
+
+    } catch (error) {
+
+        document.getElementById("output").textContent =
+            "Error: " + error.message;
+
+    }
+}
+</script>
