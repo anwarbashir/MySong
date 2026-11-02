@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MySong</title>
+</head>
+<body>
+    <h1>MySong 🎵</h1>
+
+    <input
+        type="text"
+        id="theme"
+        placeholder="Enter a song theme">
+
+    <button onclick="generateSong()">
+        Generate Song
+    </button>
+
+    <pre id="output"></pre>
+
+    <script>
+        async function generateSong() {
+            document.getElementById("output").textContent =
+                "Generating song...";
+        }
+    </script>
+</body>
+</html>
