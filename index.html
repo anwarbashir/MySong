@@ -1,37 +1,60 @@
-<script>
-async function generateSong() {
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MySong</title>
+</head>
+<body>
 
-    const theme =
-        document.getElementById("theme").value;
+    <h1>MySong 🎵</h1>
 
-    document.getElementById("output").textContent =
-        "Generating song...";
+    <input
+        type="text"
+        id="theme"
+        placeholder="Enter a song theme">
 
-    try {
+    <button onclick="generateSong()">
+        Generate Song
+    </button>
 
-        const response = await fetch(
-            "/.netlify/functions/generate-song",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    theme: theme
-                })
-            }
-        );
+    <pre id="output"></pre>
 
-        const data = await response.json();
+    <script>
+    async function generateSong() {
 
-        document.getElementById("output").textContent =
-            data.song || data.error;
-
-    } catch (error) {
+        const theme =
+            document.getElementById("theme").value;
 
         document.getElementById("output").textContent =
-            "Error: " + error.message;
+            "Generating song...";
 
+        try {
+
+            const response = await fetch(
+                "/.netlify/functions/generate-song",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        theme: theme
+                    })
+                }
+            );
+
+            const data = await response.json();
+
+            document.getElementById("output").textContent =
+                data.song || data.error;
+
+        } catch (error) {
+
+            document.getElementById("output").textContent =
+                "Error: " + error.message;
+
+        }
     }
-}
-</script>
+    </script>
+
+</body>
+</html>
